@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aline Albes - Plantas e Jardins</title>
+<meta name="description" content="Serviços de paisagismo e jardinagem com precisão e atenção aos detalhes">
+<!-- Add Google Fonts for Manrope -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  /* Set the page background to match the content area */
+  body {
+    background-color: #f9fafb;
+  }
+
+  /* Full-width blue header background - increased height by 50% from 96px to 144px */
+  .header-bg {
+    background-color: #41ACFF;
+    height: 144px; /* Increased by 50% from 96px */
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+    background-color: transparent;
+  }
+
+  .header {
+    position: relative;
+    height: 144px; /* Increased by 50% from 96px */
+  }
+
+  .profile-image-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -64px; /* Keeping this the same to maintain thumbnail position */
+    z-index: 10;
+  }
+
+  .profile-image-wrapper {
+    border-radius: 24px;
+    overflow: hidden;
+    border: 4px solid white;
+    width: 134px;
+    height: 134px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .content-wrapper {
+    background-color: #f9fafb;
+    padding-bottom: 1px; /* Prevent margin collapse */
+  }
+
+  /* BLOCK 1 - Profile Info */
+  .profile-info {
+    margin-top: 80px; /* Keep this to maintain space for the profile image */
+    text-align: center;
+    padding: 0 24px;
+    margin-bottom: 40px; /* Increased to 40px spacing between profile description and Meus Serviços */
+  }
+
+  .profile-name {
+    font-size: 24px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 10px; /* 10px spacing between items in block */
+  }
+
+  .profile-subtitle {
+    color: #6b7280;
+    margin-bottom: 10px; /* 10px spacing between items in block */
+  }
+
+  .profile-description {
+    color: #6b7280;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: 'Manrope', sans-serif;
+  }
+
+  /* BLOCK 2 - Services */
+  .services-block {
+    padding: 0 24px;
+    margin-bottom: 20px; /* 20px spacing between blocks */
+  }
+
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px; /* 10px spacing between items in block */
+  }
+
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 10px spacing between items in block */
+  }
+
+  .service-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    transition: outline 0.2s;
+    cursor: pointer;
+    outline: 1px solid transparent;
+  }
+
+  .service-item:hover {
+    outline: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .service-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .service-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #E6F4FF;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #41ACFF;
+  }
+
+  .service-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1f2937;
+  }
+
+  .service-description {
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #6b7280;
+    margin-top: 2px;
+  }
+
+  .arrow-icon {
+    color: #9ca3af;
+  }
+
+  /* BLOCK 3 - Schedule, Location, Social, CTA */
+  .actions-block {
+    padding: 0 24px;
+  }
+
+  .card {
+    background-color: white;
+    padding: 24px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; /* 10px spacing between items in block */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .schedule-text {
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: #374151;
+  }
+
+  .schedule-text span {
+    color: #41ACFF;
+  }
+
+  .button {
+    background-color: #41ACFF;
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    padding: 12px 24px;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+
+  .button:hover {
+    background-color: #3090DD;
+  }
+
+  .button:active {
+    transform: scale(0.98);
+  }
+
+  .location-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .map-thumbnail {
+    width: 64px;
+    height: 64px;
+    background-color: #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .location-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .location-name {
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: #1f2937;
+  }
+
+  .location-address {
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #6b7280;
+  }
+
+  .social-section {
+    margin-top: 40px; /* Increased to 40px spacing between Location Name and Minhas Redes */
+    margin-bottom: 10px; /* 10px spacing between items in block */
+  }
+
+  .social-links {
+    margin-top: 10px; /* 10px spacing between items in block */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .social-link {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.2s;
+    position: relative;
+    background-color: white;
+  }
+
+  .social-link::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1px dashed #e5e7eb;
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  .social-link:hover {
+    transform: scale(1.1);
+  }
+
+  .social-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social-icon.dark {
+    background-color: black;
+  }
+
+  .social-icon.light {
+    background-color: #e5e7eb;
+    color: #9ca3af;
+  }
+
+  .contact-button {
+    margin-top: 10px; /* 10px spacing between items in block */
+    width: 100%;
+    padding: 24px;
+    font-size: 18px;
+    background-color: #41ACFF;
+  }
+
+  .contact-button:hover {
+    background-color: #3090DD;
+  }
+
+  .footer {
+    margin-top: 20px; /* 20px spacing between blocks */
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .footer-text {
+    font-size: 14px;
+    color: #6b7280;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .brand-dot {
+    width: 16px;
+    height: 16px;
+    background-color: #1f2937;
+    border-radius: 50%;
+  }
+
+  .brand-text {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .container {
+      width: 100%;
+    }
+    
+    .profile-info {
+      padding: 0 16px;
+    }
+    
+    .services-block, .actions-block {
+      padding: 0 16px;
+    }
+  }
+</style>
+</head>
+<body>
+<!-- Full-width blue header background -->
+<div class="header-bg"></div>
+
+<!-- Main content container -->
+<div class="container">
+  <div class="header">
+    <div class="profile-image-container">
+      <div class="profile-image-wrapper">
+        <img 
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%20230-IyHfHJ64YViFvOAfj8SRdJvirKVfDc.png" 
+          alt="Profile picture" 
+          class="profile-image"
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <!-- BLOCK 1: Profile info -->
+    <div class="profile-info">
+      <h1 class="profile-name">Aline Albes</h1>
+      <p class="profile-subtitle">Plantas e Jardins 🌱</p>
+      
+      <p class="profile-description">
+        Realizo serviços de paisagismo e jardinagem, como corte de grama, aparação de arbustos e 
+        limpeza de folhas, com precisão e atenção aos detalhes, garantindo excelência e organização em 
+        cada trabalho.
+      </p>
+    </div>
+
+    <!-- BLOCK 2: Services section -->
+    <div class="services-block">
+      <h2 class="section-title">Meus Serviços</h2>
+      
+      <div class="services-list">
+        <!-- Service Item 1 -->
+        <div class="service-item">
+          <div class="service-content">
+            <div class="service-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="currentColor" stroke-width="2" />
+                <path d="M12 14V22M8 18H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M12 6V2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="service-text">
+              <h3 class="service-title">Limpeza de Jadim</h3>
+              <p class="service-description">Realizo serviços de paisagismo e jardinagem, como corte de grama</p>
+            </div>
+          </div>
+          <div class="arrow-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Service Item 2 -->
+        <div class="service-item">
+          <div class="service-content">
+            <div class="service-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="currentColor" stroke-width="2" />
+                <path d="M12 14V22M8 18H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M12 6V2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="service-text">
+              <h3 class="service-title">Limpeza de Jadim</h3>
+              <p class="service-description">Realizo serviços de paisagismo e jardinagem, como corte de grama</p>
+            </div>
+          </div>
+          <div class="arrow-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Service Item 3 -->
+        <div class="service-item">
+          <div class="service-content">
+            <div class="service-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="currentColor" stroke-width="2" />
+                <path d="M12 14V22M8 18H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M12 6V2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="service-text">
+              <h3 class="service-title">Limpeza de Jadim</h3>
+              <p class="service-description">Realizo serviços de paisagismo e jardinagem, como corte de grama</p>
+            </div>
+          </div>
+          <div class="arrow-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 3: Schedule, Location, Social, CTA -->
+    <div class="actions-block">
+      <!-- Schedule section -->
+      <div class="card">
+        <p class="schedule-text">Agende <span>agora</span> seu horário</p>
+        <button class="button">Agendar</button>
+      </div>
+
+      <!-- Location section -->
+      <div class="card">
+        <div class="location-content">
+          <div class="map-thumbnail">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' fill='none'%3E%3Crect width='64' height='64' fill='%23E5E7EB'/%3E%3C/svg%3E" alt="Map" class="map-image">
+          </div>
+          <div class="location-text">
+            <h3 class="location-name">Location Name</h3>
+            <p class="location-address">9487 Dowden Rd, Orlando, FL 32832</p>
+          </div>
+        </div>
+        <button class="button">Go to</button>
+      </div>
+
+      <!-- Social media section -->
+      <div class="social-section">
+        <h2 class="section-title">MINHAS REDES</h2>
+        
+        <div class="social-links">
+          <!-- Facebook icon 1 (dark) -->
+          <a href="#" class="social-link">
+            <div class="social-icon dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+          
+          <!-- Facebook icon 2 (dark) -->
+          <a href="#" class="social-link">
+            <div class="social-icon dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+          
+          <!-- Facebook icon 3 (dark) -->
+          <a href="#" class="social-link">
+            <div class="social-icon dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+          
+          <!-- Facebook icon 4 (light) -->
+          <a href="#" class="social-link">
+            <div class="social-icon light">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+          
+          <!-- Twitter icon (light) -->
+          <a href="#" class="social-link">
+            <div class="social-icon light">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23 3.00005C22.0424 3.67552 20.9821 4.19216 19.86 4.53005C19.2577 3.83756 18.4573 3.34674 17.567 3.12397C16.6767 2.90121 15.7395 2.95724 14.8821 3.2845C14.0247 3.61176 13.2884 4.19445 12.773 4.95376C12.2575 5.71308 11.9877 6.61238 12 7.53005V8.53005C10.2426 8.57561 8.50127 8.18586 6.93101 7.39549C5.36074 6.60513 4.01032 5.43868 3 4.00005C3 4.00005 -1 13 8 17C5.94053 18.398 3.48716 19.099 1 19C10 24 21 19 21 7.50005C20.9991 7.2215 20.9723 6.94364 20.92 6.67005C21.9406 5.66354 22.6608 4.39276 23 3.00005Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact button -->
+      <button class="button contact-button">Entrar em contato agora</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <span class="footer-text">crie sua conta</span>
+      <div class="brand">
+        <div class="brand-dot"></div>
+        <span class="brand-text">soloo.pro</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
